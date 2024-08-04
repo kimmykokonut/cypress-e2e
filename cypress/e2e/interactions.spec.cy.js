@@ -1,4 +1,14 @@
+// describe('Environment Variable Test', () => {
+//   it('displays the environment variable', () => {
+//     const myVar = Cypress.env('MY_ENVAR');
+//     console.log('MY_ENVAR:', myVar); // Log the variable to the console
+//     alert(myVar); // Alert to display
+//   });
+// });
+
 describe('Basic page interactions', () => {
+  alert(Cypress.env('MY_ENVAR')); //alert to display
+
   beforeEach(() => {
     cy.visit('/example-4');
   });
