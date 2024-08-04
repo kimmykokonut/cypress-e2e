@@ -33,7 +33,11 @@ describe('Basic page interactions', () => {
   //check mouse down event, xy coordinate. trigger(event) command
   it('should display the name of the most recently hovered item', () => {
     cy.get('[data-cy="box-4-items-list"] > :nth-child(2)') //hover over 2nd li
-      .trigger('mouseover');  //.trigger('event', x, y)
+      .trigger('mouseover')  //.trigger('event', x, y)
+      // .then(() => { //debugger must be after command, visible in devtools not in cypress test 
+      //   debugger;
+      // });
+      .debug();
 
     cy.get('[data-cy="box-4-selected-name"]')
       .invoke('text')
