@@ -1,12 +1,14 @@
 describe('Text box with max characters', () => {
-  it('displays the appropriate remaining characters count', () => {
+
+  beforeEach(() => {
     cy.visit('http://localhost:3000/example-3');
 
     cy.get('[data-cy="last-name-chars-left-count"]')
       .as('charsLeftSpan'); //aliasing to reduce repetitve selectors and verboseness
     cy.get('[data-cy="input-last-name"]')
       .as('charInput');
-
+  });
+  it('displays the appropriate remaining characters count', () => {
     cy.get('@charsLeftSpan') //need @alias
       .invoke('text')
       .should('equal', '15');
@@ -23,15 +25,10 @@ describe('Text box with max characters', () => {
       .invoke('text')
       .should('equal', '0');
   });
-  it('prevents the usser from typing more characters once max is exceeded', () => {
-    cy.visit('http://localhost:3000/example-3');
+  it('prevents the user from typing more characters once max is exceeded', () => {
+    cy.get('@charInput').type('abcdefghijkldsjdklfnejskjfe'); //need to redefine alias
 
-    cy.get('[data-cy="input-first-name"]')
-      .as('charInputFirst');
-
-    cy.get('@charInputFirst').type('abcdefghijkldsjdklfnejskjfe'); //need to redefine alias
-
-    cy.get('@charInputFirst')
+    cy.get('@charInput')
       .should('have.attr', 'value', 'abcdefghijkldsj') //check value of element attribute
   })
 })
