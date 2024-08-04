@@ -23,4 +23,5 @@ examples/**/.yarn/*
 !examples/**/.yarn/sdks
 !examples/**/.yarn/versions
 
-cypress/e2e
+cypress/e2e/1-getting-started
+cypress/e2e/2-advanced-examples
